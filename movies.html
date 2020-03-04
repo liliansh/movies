@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Verdana;
+        }
+        form {
+            border: 1.5px solid rgb(161, 172, 19);
+            padding: 20px;
+            width: 400px;
+            margin: auto;
+        }
+
+         div {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1{
+            text-align: center;
+            color:black;
+            text-shadow: 1px 1px blue;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        label {
+            width: 50px;
+            display: inline-block;
+            color:rgb(189, 15, 15);
+            font-family: 'Times New Roman', Times, serif;
+
+        }
+        .DeleteButton{
+            color:red;
+        }
+        
+
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <h1>My Favorite Movies</h1>
+
+  </head>
+  <body>
+      <div>
+          <label>Title</label><input id="moviename" value placeholder="Movie Title" type="text" required>
+          <label>Rating</label><input id="movierating" type="number" value placeholder="Rate the movie" required>
+          <button type="submit" class="btn btn-success" value="Click" onclick="add()">Add Movie</button>
+      </div>
+      <div>
+            <table class="table table-dark" style="font-size: medium; align-content: center;">
+                <thead>
+                    <th>Title</th>
+                    <th>Rating</th>
+                    <th>Delete</th>
+                </thead>
+                <tbody id="tbody" class="align-center">
+                    
+                    <!-- Here we Display our movies -->
+                            
+                </tbody>
+            </table>
+  </body>
+  <script>
+      function add(){
+      let titlename=document.querySelector('#moviename').value,
+      rating=document.querySelector('#movierating').value,
+      tbody = document.querySelector('#tbody');
+      $("#moviename").val(null);
+      $("#movierating").val(null);
+      if( rating>10 || rating<0){
+          alert("enter number between 0 and 10");
+          return;
+      }
+      tbody.innerHTML = tbody.innerHTML + `<tr><td>${titlename}</td><td>${rating}</td><td><button type="submit" class="DeleteButton" value="Click">Delete Movie</button></td></tr>`;
+      $(".table").on("click", ".DeleteButton", function() {
+   $(this).closest("tr").remove();
+});
+
+      }
+  </script>
+     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
